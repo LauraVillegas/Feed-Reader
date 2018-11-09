@@ -13,10 +13,10 @@ clone https://github.com/LauraVillegas/Feed-Reader.git
 or click [here](https://github.com/LauraVillegas/Feed-Reader/archive/master.zip) to Download.
 
 
-## Running the Game
+## Running the Project
 
 * If you downloaded the repo: Open index.html in your preferred browser
-* To open the project from Github click [Here] (https://lauravillegas.github.io/Feed-Reader/)
+* To open the project from Github click [Here](https://lauravillegas.github.io/Feed-Reader/)
 
 
 ### How to check the tests
