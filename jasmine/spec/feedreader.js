@@ -86,23 +86,23 @@ $(function() {
                 done();
             });
         });
-        /* This test makes sure that the feed has at least one children (entry) by
-        *  making sure that the childrens length is greater than 0.
+        /* This test makes sure that the feed has at least one entry by
+        *  making sure that the entry's length is greater than 0.
         */
         it('has loaded', function(){
             const feed = document.querySelector('.feed');
             const entry = feed.querySelector('.entry');
             /*console.log(entry); */
             expect(entry).toBeDefined();
+            expect(entry.innerText.length > 0).toBe(true);
         });
     });
 
     /* This test suite will compare feeds and make sure they are different */
     describe('New Feed Selection', function(){
         /* We will be comparing the 
-        * loaded feed. For this I have created a constant to call on to the feed,
-        * and an Array which will saved the previously loaded feed to later on compare it
-        * with the currently loaded feed. 
+        * loaded feed. For this I have created a constant to call on to the firsts and second feed,
+        * then I have created a function for each to get the entries from each feed. and then as a test I have compared them.
         */
         const feed = document.querySelector('.feed');
         const firstFeed = [];
