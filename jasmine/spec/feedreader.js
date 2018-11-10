@@ -82,44 +82,55 @@ $(function() {
             * has finalized displaying results before moving forward
             * with the test.
             */
-            loadFeed(0, done);
+            loadFeed(0, function(){
+                done();
+            });
         });
         /* This test makes sure that the feed has at least one children (entry) by
         *  making sure that the childrens length is greater than 0.
         */
         it('has loaded', function(){
             const feed = document.querySelector('.feed');
-            expect(feed.children.length > 0).toBe(true);
+            const entry = feed.querySelector('.entry');
+            /*console.log(entry); */
+            expect(entry).toBeDefined();
         });
     });
 
     /* This test suite will compare feeds and make sure they are different */
     describe('New Feed Selection', function(){
-        /* We will need to compare the previously loaded and currently
+        /* We will be comparing the 
         * loaded feed. For this I have created a constant to call on to the feed,
         * and an Array which will saved the previously loaded feed to later on compare it
         * with the currently loaded feed. 
         */
         const feed = document.querySelector('.feed');
         const firstFeed = [];
+        const secondFeed = [];
         /* Im using Jasmine's before each function to make sure everything inside it runs before any other test within the suit. 
         */
         beforeEach(function(done){
-            loadFeed(0);
-            Array.from(feed.children).forEach(function(entry) {
-                firstFeed.push(entry.innerText);
-            });
-            /*Here I'm using Jasmine's done function.
-            */
-            loadFeed(1,done);
+            loadFeed(0, function(){
+                Array.from(feed.children).forEach(function(entry){
+                    firstFeed.push(entry.innerText);
+                });
+                done();
+                });
+            loadFeed(1, function(){
+                Array.from(feed.children).forEach(function(entry){
+                    secondFeed.push(entry.innerText);
+                });
+                done();
+            });    
         });
         /* This test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
         it('shows different content', function() {
-            Array.from(feed.children).forEach(function(entry, index) {
-                expect(entry.innerText === firstFeed[ index ]).toBe(false);
-            });
+            expect(firstFeed === secondFeed).toBe(false);
+            /*console.log(secondFeed);
+            console.log(firstFeed); */
+
         });
 
 
