@@ -107,6 +107,7 @@ $(function() {
         const feed = document.querySelector('.feed');
         const firstFeed = [];
         const secondFeed = [];
+
         /* Im using Jasmine's before each function to make sure everything inside it runs before any other test within the suit. 
         */
         beforeEach(function(done){
@@ -114,25 +115,21 @@ $(function() {
                 Array.from(feed.children).forEach(function(entry){
                     firstFeed.push(entry.innerText);
                 });
-                done();
-                });
-            loadFeed(1, function(){
-                Array.from(feed.children).forEach(function(entry){
-                    secondFeed.push(entry.innerText);
-                });
-                done();
-            });    
+                loadFeed(1, function(){
+                    Array.from(feed.children).forEach(function(entry){
+                        secondFeed.push(entry.innerText);
+                    });
+                    done();
+                }); 
+            });   
         });
         /* This test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
         it('shows different content', function() {
             expect(firstFeed === secondFeed).toBe(false);
-            /*console.log(secondFeed);
-            console.log(firstFeed); */
-
+            console.log(secondFeed);
+            console.log(firstFeed);
         });
-
-
     });   
 }());
